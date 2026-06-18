@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-card-bg: var(--card-bg);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-gold: #d4af37;
+  --color-cyan: #00d2ff;
+}
+
+:root {
+  --background: #020617; /* Deepest blue/black */
+  --card-bg: #0f172a; /* Slate blue for cards */
+  --primary: #00d2ff; /* Electric Cyan from logo */
+  --accent: #d4af37; /* Metallic Gold from logo */
+  --foreground: #f8fafc;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+}
+
+@layer utilities {
+  .logo-gradient-text {
+    @apply bg-gradient-to-r from-[#d4af37] via-[#f9d423] to-[#ffffff] bg-clip-text text-transparent;
+  }
+
+  .cyan-glow {
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+  }
+
+  .gold-border {
+    border: 1px solid rgba(212, 175, 55, 0.3);
+  }
+
+  .premium-card {
+    @apply bg-slate-900/50 border border-slate-800 backdrop-blur-md hover:border-cyan-500/50 transition-all duration-300;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  }
+
+  .btn-premium {
+    @apply relative overflow-hidden bg-gradient-to-r from-cyan-600 to-blue-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-cyan-900/20 hover:shadow-cyan-500/40 hover:-translate-y-0.5 transition-all active:translate-y-0;
+  }
+
+  .btn-premium::after {
+    content: "";
+    @apply absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-25deg] transition-all duration-1000;
+  }
+
+  .btn-premium:hover::after {
+    @apply left-[150%];
+  }
+
+  .chip-texture {
+    background-image: radial-gradient(circle at 2px 2px, rgba(0, 210, 255, 0.05) 1px, transparent 0);
+    background-size: 32px 32px;
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
