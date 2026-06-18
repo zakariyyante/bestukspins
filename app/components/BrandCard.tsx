@@ -21,11 +21,13 @@ export default function BrandCard({ brand, rank, gclid }: BrandCardProps) {
   const handleCardClick = () => {
     track("Brand Click", { brand: brand.name });
 
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     if (typeof window !== "undefined" && (window as any).gtag_report_conversion) {
       (window as any).gtag_report_conversion(finalUrl);
     } else {
       window.open(finalUrl, "_blank");
     }
+    /* eslint-enable @typescript-eslint/no-explicit-any */
   };
 
   const getRankBadge = (rank: number) => {

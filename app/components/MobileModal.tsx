@@ -18,15 +18,18 @@ export default function MobileModal({ brands, gclid }: MobileModalProps) {
       navigator.userAgent
     );
     
-    if (gclid && isMobileDevice) {
-      setIsOpen(true);
-      document.body.style.overflow = 'hidden';
+    if (gclid && isMobileDevice && !isOpen) {
+      const timer = setTimeout(() => {
+        setIsOpen(true);
+        document.body.style.overflow = 'hidden';
+      }, 0);
+      return () => clearTimeout(timer);
     }
 
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [gclid]);
+  }, [gclid, isOpen]);
 
   if (!isOpen) return null;
 
