@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Brand } from "@/app/data/brands";
+import { Brand } from "../data/brands";
 import { track } from "@vercel/analytics";
 
 interface BrandCardProps {
