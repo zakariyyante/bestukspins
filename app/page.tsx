@@ -1,24 +1,22 @@
 import Hero from "./components/Hero";
 import BrandCard from "./components/BrandCard";
-import MobileModal from "./components/MobileModal";
 import { brands } from "./data/brands";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Home({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
+export default async function Home(props: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
+  const searchParams = await props.searchParams;
   const gclid = typeof searchParams.gclid === 'string' ? searchParams.gclid : undefined;
 
+  console.log("Rendering Home page with gclid:", gclid);
+
   return (
-    <div className="flex flex-col gap-0">
-      <MobileModal brands={brands} gclid={gclid} />
+    <div className="flex flex-col gap-0 bg-[#020617] text-white min-h-screen">
       <Hero />
 
       <section id="brands" className="py-24 bg-background relative overflow-hidden">
-        {/* Background glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-600/5 blur-[120px] rounded-full -z-10" />
 
         <div className="container mx-auto px-4">
