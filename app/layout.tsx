@@ -39,11 +39,14 @@ export default function RootLayout({
             function gtag_report_conversion(url) {
               var callback = function () {
                 if (typeof(url) != 'undefined') {
-                  window.open(url, '_blank');
+                  window.location = url;
                 }
               };
               gtag('event', 'conversion', {
-                  'send_to': 'AW-18247383013',
+                  'send_to': 'AW-18247383013/Qm4ACN_Jq8QcEOXvg_1D',
+                  'value': 1.0,
+                  'currency': 'USD',
+                  'transaction_id': '',
                   'event_callback': callback
               });
               return false;
